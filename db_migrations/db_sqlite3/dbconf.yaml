@@ -1,0 +1,11 @@
+production:
+  driver: sqlite3
+  open: database.db_migrations
+  dialect: sqlite3
+  import: github.com/mattn/go-sqlite3
+
+development:
+  driver: sqlite3
+  open: database.db_migrations
+  dialect: sqlite3
+  import: github.com/mattn/go-sqlite3
