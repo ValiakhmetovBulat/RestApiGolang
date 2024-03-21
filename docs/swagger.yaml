@@ -1,0 +1,247 @@
+basePath: /
+definitions:
+  api.RequestAliasBody:
+    properties:
+      alias:
+        type: string
+    type: object
+  api.RequestUrlBody:
+    properties:
+      alias:
+        type: string
+      url:
+        type: string
+    type: object
+  models.Url:
+    properties:
+      alias:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      updated_at:
+        type: string
+      url:
+        type: string
+    type: object
+host: localhost:8888
+info:
+  contact: {}
+  description: Rest API Server Golang
+  title: Rest API Golang
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: Tells if the chi-swagger APIs are working or not.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: api response
+          schema:
+            type: string
+      summary: This API can be used as health check for this application.
+      tags:
+      - info
+  /{alias}:
+    get:
+      consumes:
+      - application/json
+      description: redirects user by given alias
+      operationId: redirect-user-by-alias
+      parameters:
+      - description: alias
+        in: path
+        name: alias
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: Redirect
+      tags:
+      - redirect
+  /url:
+    delete:
+      consumes:
+      - application/json
+      description: deletes url by alias
+      operationId: delete-url-by-alias
+      parameters:
+      - description: alias
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/api.RequestAliasBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: DeleteUrlByAlias
+      tags:
+      - url
+    put:
+      consumes:
+      - application/json
+      description: updates url
+      operationId: put-url
+      parameters:
+      - description: url
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Url'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: PutUrl
+      tags:
+      - url
+  /url/{alias}:
+    get:
+      consumes:
+      - application/json
+      description: gets url by alias
+      operationId: get-url-by-alias
+      parameters:
+      - description: alias
+        in: path
+        name: alias
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: GetUrlByAlias
+      tags:
+      - url
+  /urls:
+    get:
+      description: gets all urls
+      operationId: get-all-urls
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: GetUrls
+      tags:
+      - urls
+    post:
+      consumes:
+      - application/json
+      description: posts url
+      operationId: post-url
+      parameters:
+      - description: url
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/api.RequestUrlBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: PostUrl
+      tags:
+      - urls
+swagger: "2.0"
