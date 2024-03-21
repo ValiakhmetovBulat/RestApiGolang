@@ -18,15 +18,23 @@ func init() {
 	Logger = logrus.New()
 }
 
+func setupFormatter() *prefixied.TextFormatter {
+	customFormatter := new(prefixied.TextFormatter)
+	customFormatter.TimestampFormat = "01-02 15:04:05"
+	customFormatter.FullTimestamp = true
+
+	return customFormatter
+}
+
 // SetupLogger sets logger mode according to environment mode
 func SetupLogger(env string) {
 	switch env {
 	case envLocal:
 		Logger.SetLevel(logrus.DebugLevel)
-		Logger.Formatter = new(prefixied.TextFormatter)
+		Logger.Formatter = setupFormatter()
 	case envDev:
 		Logger.SetLevel(logrus.DebugLevel)
-		Logger.Formatter = new(prefixied.TextFormatter)
+		Logger.Formatter = setupFormatter()
 	case envProd:
 		Logger.SetLevel(logrus.InfoLevel)
 	}
