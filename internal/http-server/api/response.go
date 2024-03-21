@@ -13,6 +13,13 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
+const (
+	ErrUrlNotFound   string = "url not found"
+	ErrInternalError string = "server error"
+	ErrInvalidJSON   string = "invalid JSON structure"
+	ErrAliasIsEmpty  string = "alias is empty"
+)
+
 func JSONResponse(w http.ResponseWriter, d interface{}, c int) {
 	dj, err := json.MarshalIndent(d, "", "  ")
 	if err != nil {
