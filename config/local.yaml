@@ -1,7 +1,7 @@
 env: "local" # local, dev, prod
 database_name: "sqlite3"
-database_path: "../../database/database.db"
-migrations_path: "../../db_migrations/db_sqlite3/migrations"
+database_path: "database/database.db"
+migrations_path: "db_migrations/db_sqlite3/migrations"
 http_server:
   address: "localhost:8888"
   timeout: 4s # time to write request/send response
